@@ -1,0 +1,32 @@
+local req = (syn and syn.request) or (request or http_request or httprequest) or (fluxus and fluxus.request)
+
+local data = {
+      ["content"] = "",
+          ["embeds"] = {{
+              ["title"] = "__**New Execution Request**__",
+              ["description"] = "NewPlayer!!", 
+              ["type"] = "rich",
+              ["color"] = tonumber(0x00000),
+  ["fields"] = {
+                  {
+                      ["name"] = "__Username__",
+                      ["value"] = game:GetService("Players").LocalPlayer.Name,
+                      ["inline"] = false
+                  },
+                  {
+                      ["name"] = "__UserId__",
+                      ["value"] = game:GetService("Players").LocalPlayer.userId,
+                      ["inline"] = false
+                  },
+              }
+    }
+}}
+
+if (req) then 
+    req{
+        Url = "https://discordapp.com/api/webhooks/894262514097991680/mEbdzuaZ0aVDKNu0z3K2U4B5pMwiwZaiFbFuWuYmkkjwH0G_ayByKMfoaWoBbE-FTrTC";
+        Headers = {["Content-Type"] = "application/json"};
+        Body = game:GetService("HttpService"):JSONEncode(data);
+        Method = 'POST';
+    }
+end
